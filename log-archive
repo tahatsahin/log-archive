@@ -1,0 +1,8 @@
+#!/bin/sh
+
+dateNow=$(date +%Y%m%d-%H%M%S)
+
+journalctl --output=json --since yesterday >> "/tmp/syslog.$dateNow.json"
+
+tar czvf /tmp/journalctl.$dateNow.tar.gz "/tmp/syslog.$dateNow.json"
+rm -rf "/tmp/syslog.$dateNow.json"
